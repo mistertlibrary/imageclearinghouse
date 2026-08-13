@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-size="m" data-font="sans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image Clearinghouse | West Essex High School Library</title>
+<meta name="description" content="Copyright-flexible image resources for West Essex High School: where to find reusable images, how the licenses differ, and how to cite what you use.">
+<style>
+/* ==========================================================
+   WEHS Image Clearinghouse
+   Single file. No external requests. Mosaic house variant.
+   ========================================================== */
+
+/* --- tesserae palette --- */
+:root{
+  --terracotta:#c53b21;
+  --marigold:#e0930a;
+  --jade:#0d7a56;
+  --lapis:#1b4dae;
+  --plum:#6f2585;
+  --teal:#0a6f80;
+  --rose:#c02463;
+
+  --grout:#efe8dc;
+  --paper:#fdfaf4;
+  --card:#ffffff;
+  --ink:#191713;
+  --ink-2:#4d463d;
+  --line:#1c1a16;
+  --focus:#1b4dae;
+
+  --shadow:5px 5px 0 var(--line);
+  --shadow-sm:3px 3px 0 var(--line);
+
+  --sans:"Avenir Next","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+  --body:var(--sans);
+  --base:17px;
+}
+
+html[data-size="s"]{--base:15.5px}
+html[data-size="l"]{--base:19px}
+html[data-font="serif"]{--body:var(--serif)}
+
+html[data-theme="dark"]{
+  --grout:#141311; --paper:#1b1916; --card:#23201c;
+  --ink:#f6f1e7; --ink-2:#c3bbac; --line:#000000; --focus:#8fb4ff;
+  --terracotta:#f0704f; --marigold:#f2b53c; --jade:#3fbb8d;
+  --lapis:#7fa4f5; --plum:#c07fd6; --teal:#48b3c4; --rose:#ee6c9c;
+  --shadow:5px 5px 0 #000; --shadow-sm:3px 3px 0 #000;
+}
+html[data-theme="contrast"]{
+  --grout:#ffffff; --paper:#ffffff; --card:#ffffff;
+  --ink:#000000; --ink-2:#000000; --line:#000000; --focus:#0000ee;
+  --terracotta:#000; --marigold:#000; --jade:#000;
+  --lapis:#000; --plum:#000; --teal:#000; --rose:#000;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:var(--base);line-height:1.55;
+}
+h1,h2,h3{line-height:1.1;margin:0}
+p{margin:0}
+ul,ol,dl{margin:0;padding:0}
+li{list-style:none}
+
+a{color:inherit}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{
+  outline:3px solid var(--focus);outline-offset:3px
+}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:80;
+  background:var(--card);color:var(--ink);border:2px solid var(--line);
+  padding:.7rem 1.1rem;font-weight:700}
+.skip:focus{left:1rem;top:1rem}
+
+.wrap{max-width:72rem;margin:0 auto;padding:0 1.25rem}
+.narrow{max-width:48rem;margin-left:auto;margin-right:auto}
+
+/* ---------- mosaic band ---------- */
+.mosaic{
+  display:grid;grid-template-columns:repeat(24,1fr);
+  gap:3px;height:2.75rem;border-bottom:3px solid var(--line);
+}
+.mosaic span{display:block}
+
+/* ---------- masthead ---------- */
+.masthead{background:var(--grout);border-bottom:3px solid var(--line);padding:0 0 3rem}
+.masthead .wrap{padding-top:3rem;text-align:center}
+.kicker{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:1.25rem
+}
+h1{
+  font-size:clamp(2.6rem,9vw,5.5rem);font-weight:800;letter-spacing:-.035em;
+  text-transform:uppercase;
+}
+h1 .l2{display:block;color:var(--terracotta)}
+.deck{margin:1.5rem auto 0;max-width:44rem;font-size:1.075rem;color:var(--ink-2)}
+.deck strong{color:var(--ink)}
+
+/* ---------- sections ---------- */
+main{padding:3.5rem 0 0}
+section{margin-bottom:4rem}
+h2{
+  font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:-.02em;
+  text-align:center;text-transform:uppercase;margin-bottom:.6rem;
+}
+h2 .mark{
+  display:inline-block;background:var(--marigold);color:#191713;
+  padding:.05em .3em;border:3px solid var(--line);box-shadow:var(--shadow-sm);
+}
+.sub{text-align:center;color:var(--ink-2);margin:0 auto 2rem;max-width:42rem}
+
+.slab{
+  background:var(--card);border:3px solid var(--line);box-shadow:var(--shadow);
+  padding:1.75rem;
+}
+.slab + .slab{margin-top:1.5rem}
+.slab p + p{margin-top:.85rem}
+
+.alert{
+  background:var(--marigold);color:#191713;
+  border:3px solid var(--line);box-shadow:var(--shadow);
+  padding:1.5rem;text-align:center;
+}
+html[data-theme="dark"] .alert{color:#191713}
+.alert h3{
+  font-size:1.05rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;
+}
+
+/* ---------- license key ---------- */
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.key{border:3px solid var(--line);background:var(--card);padding:1rem;box-shadow:var(--shadow-sm)}
+.key dt{
+  font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.04em;
+  display:inline-block;padding:.15em .4em;margin-bottom:.55rem;
+  background:var(--lapis);color:#fff;border:2px solid var(--line);
+}
+html[data-theme="contrast"] .key dt{background:#000;color:#fff}
+.key dd{margin:0;font-size:.95rem;color:var(--ink-2)}
+
+/* ---------- filter chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.25rem}
+.chip{
+  font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;
+  padding:.45rem .8rem;background:var(--card);color:var(--ink);
+  border:3px solid var(--line);box-shadow:var(--shadow-sm);
+}
+.chip:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--line)}
+.chip.is-on{color:#fff}
+html[data-theme="contrast"] .chip.is-on{background:#000;color:#fff}
+.chip-all.is-on{background:var(--line)}
+.c-photography.is-on{background:var(--terracotta)}
+.c-archives.is-on{background:var(--lapis)}
+.c-fineart.is-on{background:var(--plum)}
+.c-maps.is-on{background:var(--marigold);color:#191713}
+.c-books.is-on{background:var(--jade)}
+.c-icons.is-on{background:var(--rose)}
+.c-ai.is-on{background:var(--teal)}
+
+.search-row{display:flex;justify-content:center;margin-bottom:.75rem}
+.search-row label{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  display:block;margin-bottom:.3rem;color:var(--ink-2)
+}
+.search-row input{
+  font:inherit;padding:.6rem .75rem;width:min(24rem,100%);
+  background:var(--card);color:var(--ink);border:3px solid var(--line);
+}
+.tally{
+  text-align:center;font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:1.75rem;
+}
+
+/* ---------- tiles ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(17.5rem,1fr));gap:1.25rem}
+.tile{
+  background:var(--card);border:3px solid var(--line);box-shadow:var(--shadow);
+  padding:0 1.1rem 1.1rem;display:flex;flex-direction:column;position:relative;
+}
+.tile-band{display:block;height:.7rem;margin:0 -1.1rem 1rem}
+.t-photography .tile-band{background:var(--terracotta)}
+.t-archives .tile-band{background:var(--lapis)}
+.t-fineart .tile-band{background:var(--plum)}
+.t-maps .tile-band{background:var(--marigold)}
+.t-books .tile-band{background:var(--jade)}
+.t-icons .tile-band{background:var(--rose)}
+.t-ai .tile-band{background:var(--teal)}
+html[data-theme="contrast"] .tile-band{background:#000}
+
+.tile-cat{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:.35rem;
+}
+.tile-name{font-size:1.2rem;font-weight:800;letter-spacing:-.01em;margin-bottom:.55rem}
+.tile-name a{text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:.08em}
+.tile-name a:hover{text-decoration-thickness:.16em}
+.best-label{
+  display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:.2rem;
+}
+.tile-best{font-size:.93rem;color:var(--ink-2);margin-bottom:.9rem;flex:1}
+.tile-facts{border-top:2px solid var(--line);padding-top:.7rem;font-size:.82rem}
+.tile-facts > div{display:flex;gap:.5rem;padding:.15rem 0}
+.tile-facts dt{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);flex:0 0 7.5rem;
+}
+.tile-facts dd{margin:0;flex:1}
+.is-hidden{display:none !important}
+.void{
+  grid-column:1/-1;text-align:center;padding:3rem 1rem;
+  border:3px dashed var(--line);color:var(--ink-2);
+}
+
+/* ---------- citation ---------- */
+.style-tag{
+  display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;background:var(--plum);color:#fff;
+  border:2px solid var(--line);padding:.2em .5em;margin-bottom:.9rem;
+}
+html[data-theme="contrast"] .style-tag{background:#000}
+.pattern{
+  font-family:var(--mono);font-size:.85rem;line-height:1.75;
+  background:var(--grout);border:2px solid var(--line);padding:.9rem 1rem;margin:.9rem 0;
+}
+html[data-theme="dark"] .pattern{background:#141311}
+
+/* ---------- learn more ---------- */
+.reads{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.25rem}
+.read{
+  background:var(--card);border:3px solid var(--line);box-shadow:var(--shadow);
+  padding:1.25rem;display:flex;flex-direction:column;gap:.6rem;
+}
+.read h3{font-size:1.05rem;font-weight:800}
+.read p{font-size:.92rem;color:var(--ink-2);flex:1}
+.read a{
+  align-self:flex-start;font-size:.82rem;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;text-decoration:none;
+  background:var(--teal);color:#fff;border:3px solid var(--line);
+  padding:.4rem .8rem;box-shadow:var(--shadow-sm);
+}
+html[data-theme="contrast"] .read a{background:#000}
+.read a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--line)}
+
+/* ---------- toolbar ---------- */
+.a11y{position:fixed;right:1rem;bottom:1rem;z-index:60}
+.a11y-btn{
+  font:inherit;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;background:var(--lapis);color:#fff;
+  border:3px solid var(--line);box-shadow:var(--shadow-sm);padding:.55rem .8rem;
+}
+html[data-theme="contrast"] .a11y-btn{background:#000}
+.a11y-panel{
+  display:none;position:absolute;right:0;bottom:3.4rem;width:15rem;
+  background:var(--card);border:3px solid var(--line);box-shadow:var(--shadow);padding:1rem;
+}
+.a11y-panel[data-open="1"]{display:block}
+.a11y-group + .a11y-group{margin-top:.9rem}
+.a11y-group p{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:.35rem;
+}
+.a11y-row{display:flex;gap:.35rem}
+.a11y-row button{
+  font:inherit;font-size:.78rem;font-weight:700;cursor:pointer;flex:1;
+  padding:.35rem .2rem;background:var(--card);color:var(--ink);border:2px solid var(--line);
+}
+.a11y-row button[aria-pressed="true"]{background:var(--line);color:var(--paper)}
+html[data-theme="contrast"] .a11y-row button[aria-pressed="true"]{background:#000;color:#fff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- footer ---------- */
+footer{
+  background:var(--grout);border-top:3px solid var(--line);
+  margin-top:4rem;padding:2.5rem 0;text-align:center;
+}
+footer p{font-size:.88rem;color:var(--ink-2)}
+footer p + p{margin-top:.4rem}
+
+@media (max-width:34rem){
+  .tile-facts > div{flex-direction:column;gap:.05rem}
+  .tile-facts dt{flex:none}
+}
+
+@media print{
+  .a11y,.chips,.search-row,.tally,.skip,.mosaic{display:none !important}
+  body{background:#fff;color:#000;font-size:10pt}
+  .slab,.tile,.read,.alert,.key{box-shadow:none;border:1pt solid #000;break-inside:avoid}
+  .grid{display:block}
+  .tile{margin-bottom:.5rem}
+  .tile-band{display:none}
+  .tile-name a::after{content:" (" attr(href) ")";font-family:var(--mono);font-size:7.5pt;font-weight:400;word-break:break-all}
+  h1{font-size:26pt}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+  .chip:hover,.read a:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="mosaic" aria-hidden="true">
+  <span style="background:var(--terracotta)"></span>
+  <span style="background:var(--marigold)"></span>
+  <span style="background:var(--lapis)"></span>
+  <span style="background:var(--rose)"></span>
+  <span style="background:var(--plum)"></span>
+  <span style="background:var(--teal)"></span>
+  <span style="background:var(--jade)"></span>
+  <span style="background:var(--lapis)"></span>
+  <span style="background:var(--terracotta)"></span>
+  <span style="background:var(--plum)"></span>
+  <span style="background:var(--marigold)"></span>
+  <span style="background:var(--jade)"></span>
+  <span style="background:var(--teal)"></span>
+  <span style="background:var(--rose)"></span>
+  <span style="background:var(--lapis)"></span>
+  <span style="background:var(--marigold)"></span>
+  <span style="background:var(--terracotta)"></span>
+  <span style="background:var(--jade)"></span>
+  <span style="background:var(--plum)"></span>
+  <span style="background:var(--rose)"></span>
+  <span style="background:var(--teal)"></span>
+  <span style="background:var(--terracotta)"></span>
+  <span style="background:var(--marigold)"></span>
+  <span style="background:var(--lapis)"></span>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="kicker">West Essex High School Library</p>
+    <h1>Image<span class="l2">Clearinghouse</span></h1>
+    <p class="deck">Use this table to locate or create high-quality, legally reusable images. All listed resources offer copyright-flexible or public domain content, but you <strong>must verify license details</strong> for each image before use.</p>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <section aria-labelledby="h-start">
+    <h2 id="h-start"><span class="mark">Start Here</span></h2>
+    <div class="slab narrow">
+      <p style="text-align:center">Always start by considering whether your use is educational (for school), commercial (for profit), or transformative (for artistic purposes). Understanding copyright basics protects you and respects creators' rights.</p>
+    </div>
+    <div class="alert narrow" style="margin-top:1.5rem">
+      <h3>Warning</h3>
+      <p>While most of these images are safe for school, it's impossible to guarantee that each site is completely free of content you may consider objectionable. By using this guide, you agree to exhibit maturity and exercise discretion.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-keys">
+    <h2 id="h-keys"><span class="mark">Common Licenses at a Glance</span></h2>
+    <dl class="keys">
+      <div class="key"><dt>Public Domain</dt><dd>No restrictions. Use freely without attribution (though attribution is both polite and good scholarly practice).</dd></div>
+      <div class="key"><dt>CC0</dt><dd>Creator waives all rights. No attribution required, but recommended.</dd></div>
+      <div class="key"><dt>CC BY</dt><dd>Credit the creator. Commercial use allowed.</dd></div>
+      <div class="key"><dt>CC BY-NC</dt><dd>Credit the creator. Non-commercial use only.</dd></div>
+      <div class="key"><dt>CC BY-NC-ND</dt><dd>Credit the creator. Non-commercial use only. No modifications allowed.</dd></div>
+      <div class="key"><dt>CC BY-SA</dt><dd>Credit the creator. Share adaptations under the same license.</dd></div>
+    </dl>
+    <p class="sub" style="margin-top:1.5rem"><strong>Learn more:</strong> <a href="https://creativecommons.org/share-your-work/cclicenses/" target="_blank" rel="noopener noreferrer">Creative Commons License Types</a></p>
+  </section>
+
+  <section aria-labelledby="h-dir">
+    <h2 id="h-dir"><span class="mark">Copyright-Flexible Image Sources</span></h2>
+
+    <div class="chips" role="group" aria-label="Filter by category">
+        <button class="chip chip-all is-on" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip c-photography" data-filter="Photography" aria-pressed="false">Photography</button>
+        <button class="chip c-archives" data-filter="Institutional Archives" aria-pressed="false">Institutional Archives</button>
+        <button class="chip c-fineart" data-filter="Fine Art" aria-pressed="false">Fine Art</button>
+        <button class="chip c-maps" data-filter="Maps &amp; Ephemera" aria-pressed="false">Maps &amp; Ephemera</button>
+        <button class="chip c-books" data-filter="Book Illustrations" aria-pressed="false">Book Illustrations</button>
+        <button class="chip c-icons" data-filter="Icons &amp; Vector Art" aria-pressed="false">Icons &amp; Vector Art</button>
+        <button class="chip c-ai" data-filter="AI Image Generators" aria-pressed="false">AI Image Generators</button>
+    </div>
+
+    <div class="search-row">
+      <div>
+        <label for="q">Search</label>
+        <input type="search" id="q" placeholder="maps, CC0, medical, engravings">
+      </div>
+    </div>
+
+    <p class="tally" id="tally" role="status" aria-live="polite"></p>
+
+    <ul class="grid" id="grid">
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Modern, high-res photography for presentations and websites</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Unsplash License</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer">Pexels</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Professional stock photos; diverse subjects. Cannot resell as standalone.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Pexels License</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://pixabay.com/" target="_blank" rel="noopener noreferrer">Pixabay</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>General-purpose images. Cannot resell as standalone.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Pixabay Content License</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://www.shopify.com/stock-photos" target="_blank" rel="noopener noreferrer">Burst</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Business and commercial imagery</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Shopify Free Photo Terms</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://nappy.co/" target="_blank" rel="noopener noreferrer">Nappy</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Diverse representation in photography</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://genderspectrum.vice.com/" target="_blank" rel="noopener noreferrer">The Gender Spectrum Collection</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>LGBTQ+ representation; educational use</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC BY-NC-ND 4.0</dd></div>
+          <div><dt>Commercial Use</dt><dd>No</dd></div>
+          <div><dt>Attribution</dt><dd>Yes</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA Images</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Space, astronomy, aerospace. Cannot imply NASA endorsement.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>U.S. government work</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes (restrictions apply)</dd></div>
+          <div><dt>Attribution</dt><dd>Encouraged</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://npgallery.nps.gov/" target="_blank" rel="noopener noreferrer">National Park Gallery</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>U.S. national parks and landscapes</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mostly public domain</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://photogrammar.org/" target="_blank" rel="noopener noreferrer">Photogrammar</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Historical U.S. photography (FSA-OWI). Excellent for social history.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC BY-NC-SA 4.0</dd></div>
+          <div><dt>Commercial Use</dt><dd>No</dd></div>
+          <div><dt>Attribution</dt><dd>Yes</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-photography" data-cat="Photography">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Photography</p>
+        <h3 class="tile-name"><a href="https://www.flickr.com/creativecommons/" target="_blank" rel="noopener noreferrer">Flickr Creative Commons</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>User-contributed photography. Check individual licenses.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed CC licenses</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://www.loc.gov/collections/" target="_blank" rel="noopener noreferrer">Library of Congress</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>U.S. historical documents, photos, maps, recordings</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed (many public domain)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://www.si.edu/openaccess" target="_blank" rel="noopener noreferrer">Smithsonian Open Access</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>5+ million museum objects, photographs, research data</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0 (designated items)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Encouraged</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://digitalcollections.nypl.org/" target="_blank" rel="noopener noreferrer">NYPL Digital Collections</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Maps, manuscripts, prints, photos. Filter by &quot;Public Domain&quot;</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://www.bl.uk/catalogues-and-collections/digital-collections" target="_blank" rel="noopener noreferrer">British Library</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Manuscripts, historic texts, rare books</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://www.europeana.eu/" target="_blank" rel="noopener noreferrer">Europeana</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>European cultural heritage aggregator</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>User-uploaded media. Always verify license on image page.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed (mostly CC/PD)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://openverse.org/" target="_blank" rel="noopener noreferrer">Openverse</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Aggregates 600M+ openly licensed works. Filter by license type.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed CC licenses</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://dp.la/" target="_blank" rel="noopener noreferrer">Digital Public Library of America</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>One search across digitized holdings from U.S. libraries, archives, and museums. Filter by rights statement.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed. Filter by rights statement.</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://www.flickr.com/commons" target="_blank" rel="noopener noreferrer">Flickr Commons</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Photographs from partner institutions worldwide with no known copyright restrictions</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>No known copyright restrictions</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://catalog.archives.gov/" target="_blank" rel="noopener noreferrer">National Archives Catalog</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>U.S. federal records, photographs, and film, including the Presidential Libraries</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mostly public domain (U.S. government records)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Encouraged</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-archives" data-cat="Institutional Archives">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Institutional Archives</p>
+        <h3 class="tile-name"><a href="https://gallica.bnf.fr/" target="_blank" rel="noopener noreferrer">Gallica (BnF)</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>French printed matter, manuscripts, maps, and engravings from the BnF and partner institutions</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed. Check each item.</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.metmuseum.org/art/collection" target="_blank" rel="noopener noreferrer">Metropolitan Museum (Open Access)</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>500,000+ artworks. Filter by &quot;Public Domain&quot; or &quot;OA&quot;</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0 (OA items)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.rijksmuseum.nl/en/rijksstudio" target="_blank" rel="noopener noreferrer">Rijksmuseum</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Dutch Golden Age art. High-resolution downloads.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0 (Public Domain)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.artic.edu/collection" target="_blank" rel="noopener noreferrer">Art Institute of Chicago</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>50,000+ open-access artworks</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0 (OA items)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.nga.gov/artworks/free-images-and-open-access" target="_blank" rel="noopener noreferrer">National Gallery of Art</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>50,000+ high-res images of Western art</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.clevelandart.org/open-access" target="_blank" rel="noopener noreferrer">Cleveland Museum of Art</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>30,000+ open-access artworks</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.getty.edu/art/collection/" target="_blank" rel="noopener noreferrer">Getty Open Content</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Fine art and rare books</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://collections.vam.ac.uk/" target="_blank" rel="noopener noreferrer">Victoria &amp; Albert Museum</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Decorative arts, design, fashion</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC BY</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Yes</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://artvee.com/" target="_blank" rel="noopener noreferrer">Artvee</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Curated classical art. High-res, user-friendly.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://harvardartmuseums.org/collections" target="_blank" rel="noopener noreferrer">Harvard Art Museums</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>250,000+ objects. Check individual records.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://www.rawpixel.com/public-domain" target="_blank" rel="noopener noreferrer">Rawpixel Public Domain</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Enhanced public domain art. High-resolution.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://parismuseescollections.paris.fr/en" target="_blank" rel="noopener noreferrer">Paris Musees Collections</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>CC0 downloads from fourteen City of Paris museums, including the Petit Palais</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0 on open content items</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://collections.lacma.org/" target="_blank" rel="noopener noreferrer">LACMA Collections</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Encyclopedic collection with a public-domain-only filter. TIFF as well as JPEG downloads.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Unrestricted use on public domain items</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://sammlung.staedelmuseum.de/en" target="_blank" rel="noopener noreferrer">Staedel Museum Digital Collection</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Seven centuries of European painting, prints, and drawings from Frankfurt. Adaptations must carry the same license.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC BY-SA 4.0</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Yes</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-fineart" data-cat="Fine Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Fine Art</p>
+        <h3 class="tile-name"><a href="https://open.smk.dk/" target="_blank" rel="noopener noreferrer">SMK Open (National Gallery of Denmark)</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Danish and European painting and works on paper from the 14th century onward</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC0 on public domain items</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-maps" data-cat="Maps &amp; Ephemera">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Maps &amp; Ephemera</p>
+        <h3 class="tile-name"><a href="https://www.davidrumsey.com/" target="_blank" rel="noopener noreferrer">David Rumsey Map Collection</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>150,000+ historical maps for geographic research</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC BY-NC-SA 3.0</dd></div>
+          <div><dt>Commercial Use</dt><dd>No</dd></div>
+          <div><dt>Attribution</dt><dd>Yes</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-maps" data-cat="Maps &amp; Ephemera">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Maps &amp; Ephemera</p>
+        <h3 class="tile-name"><a href="https://www.loc.gov/maps/" target="_blank" rel="noopener noreferrer">LoC Geography &amp; Map Division</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Historical U.S. and world maps</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain (mostly)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Encouraged</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-maps" data-cat="Maps &amp; Ephemera">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Maps &amp; Ephemera</p>
+        <h3 class="tile-name"><a href="https://digitalcollections.nypl.org/" target="_blank" rel="noopener noreferrer">NYPL Map Division</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>20,000+ digitized maps and atlases</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed (many public domain)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-maps" data-cat="Maps &amp; Ephemera">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Maps &amp; Ephemera</p>
+        <h3 class="tile-name"><a href="https://collections.leventhalmap.org/" target="_blank" rel="noopener noreferrer">Leventhal Map &amp; Education Center</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Historical maps and atlases from the Boston Public Library, with IIIF access on every object</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Mixed. Many items public domain.</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-books" data-cat="Book Illustrations">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Book Illustrations</p>
+        <h3 class="tile-name"><a href="https://www.flickr.com/photos/internetarchivebookimages/" target="_blank" rel="noopener noreferrer">Internet Archive Book Images</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>14 million+ illustrations from digitized books</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain (mostly)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-books" data-cat="Book Illustrations">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Book Illustrations</p>
+        <h3 class="tile-name"><a href="https://www.oldbookillustrations.com/" target="_blank" rel="noopener noreferrer">Old Book Illustrations</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Curated vintage book illustrations, high-res scans</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-books" data-cat="Book Illustrations">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Book Illustrations</p>
+        <h3 class="tile-name"><a href="https://www.biodiversitylibrary.org/" target="_blank" rel="noopener noreferrer">Biodiversity Heritage Library</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Natural history illustrations from scientific literature</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain (mostly)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-books" data-cat="Book Illustrations">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Book Illustrations</p>
+        <h3 class="tile-name"><a href="https://wellcomecollection.org/works" target="_blank" rel="noopener noreferrer">Wellcome Collection</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>100,000+ images on medical history, science, human experience</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>CC BY 4.0 (most)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Yes</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-books" data-cat="Book Illustrations">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Book Illustrations</p>
+        <h3 class="tile-name"><a href="https://www.gutenberg.org/" target="_blank" rel="noopener noreferrer">Project Gutenberg</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>70,000+ free ebooks with illustrations</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Public Domain</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-books" data-cat="Book Illustrations">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Book Illustrations</p>
+        <h3 class="tile-name"><a href="https://publicdomainreview.org/" target="_blank" rel="noopener noreferrer">The Public Domain Review</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Essays and image collections drawn from digitized archives worldwide</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Varies by source collection</dd></div>
+          <div><dt>Commercial Use</dt><dd>Varies</dd></div>
+          <div><dt>Attribution</dt><dd>Varies</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://undraw.co/" target="_blank" rel="noopener noreferrer">unDraw</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Modern, customizable illustrations for presentations</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Open source</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://thenounproject.com/" target="_blank" rel="noopener noreferrer">The Noun Project</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Icons and symbols. Pro removes attribution requirement.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Free with attribution/Pro</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Yes (free tier)</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer">Flaticon</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Vector icons with usage limits on free tier</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Free with attribution/Premium</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Yes (free tier)</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://www.freepik.com/" target="_blank" rel="noopener noreferrer">Freepik</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Vector art, PSD files. Check usage limits.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Free with attribution/Premium</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>Yes (free tier)</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://lucide.dev/" target="_blank" rel="noopener noreferrer">Lucide</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Line icons in SVG. No attribution required and no download limit.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>ISC (open source)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://heroicons.com/" target="_blank" rel="noopener noreferrer">Heroicons</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Interface icons in outline and solid styles</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>MIT (open source)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-icons" data-cat="Icons &amp; Vector Art">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">Icons &amp; Vector Art</p>
+        <h3 class="tile-name"><a href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phosphor Icons</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Icon family in six weights, from thin to duotone</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>MIT (open source)</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-ai" data-cat="AI Image Generators">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">AI Image Generators</p>
+        <h3 class="tile-name"><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT image generation (OpenAI)</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Text-to-image via ChatGPT Plus or API. Cannot train competing models.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>You own outputs; OpenAI Usage Policy applies</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-ai" data-cat="AI Image Generators">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">AI Image Generators</p>
+        <h3 class="tile-name"><a href="https://www.craiyon.com/" target="_blank" rel="noopener noreferrer">Craiyon</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Free text-to-image. Lower resolution; good for prototypes.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>Free use; check terms</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes (with limitations)</dd></div>
+          <div><dt>Attribution</dt><dd>Yes (free tier)</dd></div>
+        </dl>
+      </li>
+      <li class="tile t-ai" data-cat="AI Image Generators">
+        <span class="tile-band" aria-hidden="true"></span>
+        <p class="tile-cat">AI Image Generators</p>
+        <h3 class="tile-name"><a href="https://www.bing.com/images/create" target="_blank" rel="noopener noreferrer">Microsoft Image Creator</a></h3>
+        <p class="tile-best"><span class="best-label">Best For</span>Free, with a model picker (DALL&middot;E 3, GPT-4o, MAI-Image-1). Microsoft takes a broad license to your prompts and outputs.</p>
+        <dl class="tile-facts">
+          <div><dt>License</dt><dd>You own; Microsoft Services Agreement</dd></div>
+          <div><dt>Commercial Use</dt><dd>Yes (restrictions)</dd></div>
+          <div><dt>Attribution</dt><dd>No</dd></div>
+        </dl>
+      </li>
+      <li class="void is-hidden" id="void">Nothing matches that filter. Clear the search box or choose another category.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-cite">
+    <h2 id="h-cite"><span class="mark">How to Cite Images</span></h2>
+    <div class="slab narrow">
+      <p class="style-tag">MLA 9th Edition</p>
+      <p>In MLA format, visuals should be labeled Figure (abbreviated Fig.), assigned an Arabic numeral, and accompanied by a descriptive caption. General Works Cited format is as follows (remember to add a hanging indent!):</p>
+      <p class="pattern">Creator's Last Name, First Name. <em>Title of Image.</em> Date (Month Day, Year). <em>Title of Website</em>, URL. Access date optional.</p>
+      <p>If you're using a digital image embedded in an article, place the title in quotation marks.</p>
+      <p>If you choose to include the full citation in your caption, don't repeat it on your Works Cited page.</p>
+    </div>
+    <div class="slab narrow">
+      <p class="style-tag">Chicago 18th Edition (Notes-Bibliography)</p>
+      <p>In Chicago, captions can be labeled Figure (abbreviated Fig.) or Illustration (abbreviated Ill.), but must be assigned an Arabic numeral. Bibliography format is as follows (remember to add a hanging indent!):</p>
+      <p class="pattern">Creator's Last Name, First Name. <em>Title of Image.</em> Date (Month Day, Year). Medium and dimensions (if relevant, say, for a painting). Accession number (if available). <em>Title of Website</em>. URL.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-learn">
+    <h2 id="h-learn"><span class="mark">Learn More About Copyright &amp; Fair Use</span></h2>
+    <p class="sub">Learn more about concepts like intellectual property, copyright, and open licensing.</p>
+    <div class="reads">
+      <div class="read">
+        <h3>Creative Commons</h3>
+        <p>Understand open licenses and choose one for your own work</p>
+        <a href="https://creativecommons.org/share-your-work/" target="_blank" rel="noopener noreferrer">Explore</a>
+      </div>
+      <div class="read">
+        <h3>Stanford Copyright &amp; Fair Use</h3>
+        <p>Comprehensive resource on U.S. copyright law</p>
+        <a href="https://fairuse.stanford.edu/" target="_blank" rel="noopener noreferrer">Learn more</a>
+      </div>
+      <div class="read">
+        <h3>SPARC Author Rights</h3>
+        <p>Guidance for scholars on retaining rights to their work</p>
+        <a href="https://sparcopen.org/our-work/author-rights/" target="_blank" rel="noopener noreferrer">Read guide</a>
+      </div>
+      <div class="read">
+        <h3>U.S. Copyright Office</h3>
+        <p>Official government resource on copyright</p>
+        <a href="https://www.copyright.gov/" target="_blank" rel="noopener noreferrer">Visit site</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-ethics">
+    <h2 id="h-ethics"><span class="mark">Ethics and AI Images</span></h2>
+    <div class="alert narrow">
+      <p>AI image generators are trained on large datasets that almost definitely include copyrighted works. While you may own the outputs, consider the ethical implications of using AI-generated content in academic work. Always disclose when images are AI-generated and consult your teacher before using them for assignments. <a href="https://docs.google.com/document/d/1MyylUrYLeXQRp3HWu1P29Kkjkxu6G5c9i0svhXH28cg/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Check this doc for information on citing generative AI</a>.</p>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>West Essex High School Library</p>
+  </div>
+</footer>
+
+<div class="a11y">
+  <button class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel">Display</button>
+  <div class="a11y-panel" id="a11yPanel" data-open="0">
+    <div class="a11y-group">
+      <p>Text size</p>
+      <div class="a11y-row" role="group" aria-label="Text size">
+        <button data-set="size" data-val="s" aria-pressed="false">S</button>
+        <button data-set="size" data-val="m" aria-pressed="true">M</button>
+        <button data-set="size" data-val="l" aria-pressed="false">L</button>
+      </div>
+    </div>
+    <div class="a11y-group">
+      <p>Theme</p>
+      <div class="a11y-row" role="group" aria-label="Theme">
+        <button data-set="theme" data-val="light" aria-pressed="true">Light</button>
+        <button data-set="theme" data-val="dark" aria-pressed="false">Dark</button>
+        <button data-set="theme" data-val="contrast" aria-pressed="false">High</button>
+      </div>
+    </div>
+    <div class="a11y-group">
+      <p>Typeface</p>
+      <div class="a11y-row" role="group" aria-label="Typeface">
+        <button data-set="font" data-val="sans" aria-pressed="true">Sans</button>
+        <button data-set="font" data-val="serif" aria-pressed="false">Serif</button>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="sr" id="announce" role="status" aria-live="polite"></p>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var say = document.getElementById("announce");
+
+  /* ---- display preferences ---- */
+  function load(k, def){
+    try { return localStorage.getItem("ic_" + k) || def; } catch(e){ return def; }
+  }
+  function save(k, v){ try { localStorage.setItem("ic_" + k, v); } catch(e){} }
+
+  var prefs = {
+    size:  load("size", "m"),
+    theme: load("theme", (window.matchMedia && matchMedia("(prefers-contrast: more)").matches) ? "contrast"
+                 : (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light"),
+    font:  load("font", "sans")
+  };
+
+  function paint(){
+    root.setAttribute("data-size", prefs.size);
+    root.setAttribute("data-theme", prefs.theme);
+    root.setAttribute("data-font", prefs.font);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-set]"), function(b){
+      b.setAttribute("aria-pressed", String(prefs[b.getAttribute("data-set")] === b.getAttribute("data-val")));
+    });
+  }
+  paint();
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-set]"), function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-set"), v = b.getAttribute("data-val");
+      prefs[k] = v; save(k, v); paint();
+      say.textContent = k + " set to " + v;
+    });
+  });
+
+  var btn = document.getElementById("a11yBtn");
+  var panel = document.getElementById("a11yPanel");
+  function setPanel(open){
+    panel.setAttribute("data-open", open ? "1" : "0");
+    btn.setAttribute("aria-expanded", String(!!open));
+  }
+  btn.addEventListener("click", function(){
+    setPanel(panel.getAttribute("data-open") !== "1");
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && panel.getAttribute("data-open") === "1"){ setPanel(false); btn.focus(); }
+  });
+  document.addEventListener("click", function(e){
+    if (!panel.contains(e.target) && e.target !== btn) setPanel(false);
+  });
+
+  /* ---- directory filtering ---- */
+  var tiles  = Array.prototype.slice.call(document.querySelectorAll("#grid .tile"));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+  var q      = document.getElementById("q");
+  var tally  = document.getElementById("tally");
+  var voidEl = document.getElementById("void");
+  var total  = tiles.length;
+  var cat    = "all";
+
+  var hay = tiles.map(function(t){
+    return t.textContent.toLowerCase().replace(/\s+/g, " ");
+  });
+
+  function run(){
+    var term = q.value.trim().toLowerCase();
+    var shown = 0;
+    tiles.forEach(function(t, i){
+      var okCat = (cat === "all") || (t.getAttribute("data-cat") === cat);
+      var okTxt = (term === "") || (hay[i].indexOf(term) !== -1);
+      var on = okCat && okTxt;
+      t.classList.toggle("is-hidden", !on);
+      if (on) shown++;
+    });
+    voidEl.classList.toggle("is-hidden", shown !== 0);
+    tally.textContent = (shown === total)
+      ? "Showing all " + total + " sources"
+      : "Showing " + shown + " of " + total + " sources";
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener("click", function(){
+      cat = c.getAttribute("data-filter");
+      chips.forEach(function(o){
+        var on = (o === c);
+        o.classList.toggle("is-on", on);
+        o.setAttribute("aria-pressed", String(on));
+      });
+      run();
+    });
+  });
+  q.addEventListener("input", run);
+  run();
+})();
+</script>
+
+</body>
+</html>
