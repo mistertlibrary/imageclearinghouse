@@ -1,0 +1,42 @@
+{
+  "lyceum": 1,
+  "_note": "Generated for the Lyceum hub's unified search. Section titles are the guide's own headings. 'keywords' is optional and never displayed: it lets an evocative title stay evocative while remaining findable. Leave arrays empty until you have something to add.",
+  "title": "Image Clearinghouse",
+  "description": "Use this table to locate or create high-quality, legally reusable images.",
+  "url": "https://mistertlibrary.github.io/imageclearinghouse/",
+  "series": "",
+  "course": "",
+  "subjects": [],
+  "sections": [
+    {
+      "title": "Start Here",
+      "anchor": "#h-start",
+      "keywords": []
+    },
+    {
+      "title": "Common Licenses at a Glance",
+      "anchor": "#h-keys",
+      "keywords": []
+    },
+    {
+      "title": "Copyright-Flexible Image Sources",
+      "anchor": "#h-dir",
+      "keywords": []
+    },
+    {
+      "title": "How to Cite Images",
+      "anchor": "#h-cite",
+      "keywords": []
+    },
+    {
+      "title": "Copyright & Fair Use",
+      "anchor": "#h-learn",
+      "keywords": []
+    },
+    {
+      "title": "Ethics and AI Images",
+      "anchor": "#h-ethics",
+      "keywords": []
+    }
+  ]
+}
