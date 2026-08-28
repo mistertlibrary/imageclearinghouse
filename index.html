@@ -26,6 +26,12 @@
   --line:#1c1a16;
   --focus:#1b4dae;
 
+  /* Text that sits ON a saturated hue block. The hues invert between
+     themes; the text on them has to invert too, or it stops being
+     readable in exactly the theme meant to help. */
+  --on-hue:#fff;
+  --on-marigold:#191713;
+
   --shadow:5px 5px 0 var(--line);
   --shadow-sm:3px 3px 0 var(--line);
 
@@ -43,6 +49,7 @@ html[data-font="serif"]{--body:var(--serif)}
 html[data-theme="dark"]{
   --grout:#141311; --paper:#1b1916; --card:#23201c;
   --ink:#f6f1e7; --ink-2:#c3bbac; --line:#000000; --focus:#8fb4ff;
+  --on-hue:#191713; --on-marigold:#191713;
   --terracotta:#f0704f; --marigold:#f2b53c; --jade:#3fbb8d;
   --lapis:#7fa4f5; --plum:#c07fd6; --teal:#48b3c4; --rose:#ee6c9c;
   --shadow:5px 5px 0 #000; --shadow-sm:3px 3px 0 #000;
@@ -50,6 +57,7 @@ html[data-theme="dark"]{
 html[data-theme="contrast"]{
   --grout:#ffffff; --paper:#ffffff; --card:#ffffff;
   --ink:#000000; --ink-2:#000000; --line:#000000; --focus:#0000ee;
+  --on-hue:#fff; --on-marigold:#fff;
   --terracotta:#000; --marigold:#000; --jade:#000;
   --lapis:#000; --plum:#000; --teal:#000; --rose:#000;
 }
@@ -108,7 +116,7 @@ h2{
   text-align:center;text-transform:uppercase;margin-bottom:.6rem;
 }
 h2 .mark{
-  display:inline-block;background:var(--marigold);color:#191713;
+  display:inline-block;background:var(--marigold);color:var(--on-marigold);
   padding:.05em .3em;border:3px solid var(--line);box-shadow:var(--shadow-sm);
 }
 .sub{text-align:center;color:var(--ink-2);margin:0 auto 2rem;max-width:42rem}
@@ -121,11 +129,10 @@ h2 .mark{
 .slab p + p{margin-top:.85rem}
 
 .alert{
-  background:var(--marigold);color:#191713;
+  background:var(--marigold);color:var(--on-marigold);
   border:3px solid var(--line);box-shadow:var(--shadow);
   padding:1.5rem;text-align:center;
 }
-html[data-theme="dark"] .alert{color:#191713}
 .alert h3{
   font-size:1.05rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;
 }
@@ -136,7 +143,7 @@ html[data-theme="dark"] .alert{color:#191713}
 .key dt{
   font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.04em;
   display:inline-block;padding:.15em .4em;margin-bottom:.55rem;
-  background:var(--lapis);color:#fff;border:2px solid var(--line);
+  background:var(--lapis);color:var(--on-hue);border:2px solid var(--line);
 }
 html[data-theme="contrast"] .key dt{background:#000;color:#fff}
 .key dd{margin:0;font-size:.95rem;color:var(--ink-2)}
@@ -149,13 +156,13 @@ html[data-theme="contrast"] .key dt{background:#000;color:#fff}
   border:3px solid var(--line);box-shadow:var(--shadow-sm);
 }
 .chip:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--line)}
-.chip.is-on{color:#fff}
+.chip.is-on{color:var(--on-hue)}
 html[data-theme="contrast"] .chip.is-on{background:#000;color:#fff}
-.chip-all.is-on{background:var(--line)}
+.chip-all.is-on{background:var(--line);color:#fff}
 .c-photography.is-on{background:var(--terracotta)}
 .c-archives.is-on{background:var(--lapis)}
 .c-fineart.is-on{background:var(--plum)}
-.c-maps.is-on{background:var(--marigold);color:#191713}
+.c-maps.is-on{background:var(--marigold);color:var(--on-marigold)}
 .c-books.is-on{background:var(--jade)}
 .c-icons.is-on{background:var(--rose)}
 .c-ai.is-on{background:var(--teal)}
@@ -218,7 +225,7 @@ html[data-theme="contrast"] .tile-band{background:#000}
 /* ---------- citation ---------- */
 .style-tag{
   display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
-  text-transform:uppercase;background:var(--plum);color:#fff;
+  text-transform:uppercase;background:var(--plum);color:var(--on-hue);
   border:2px solid var(--line);padding:.2em .5em;margin-bottom:.9rem;
 }
 html[data-theme="contrast"] .style-tag{background:#000}
@@ -239,7 +246,7 @@ html[data-theme="dark"] .pattern{background:#141311}
 .read a{
   align-self:flex-start;font-size:.82rem;font-weight:800;letter-spacing:.06em;
   text-transform:uppercase;text-decoration:none;
-  background:var(--teal);color:#fff;border:3px solid var(--line);
+  background:var(--teal);color:var(--on-hue);border:3px solid var(--line);
   padding:.4rem .8rem;box-shadow:var(--shadow-sm);
 }
 html[data-theme="contrast"] .read a{background:#000}
@@ -249,7 +256,7 @@ html[data-theme="contrast"] .read a{background:#000}
 .a11y{position:fixed;right:1rem;bottom:1rem;z-index:60}
 .a11y-btn{
   font:inherit;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;background:var(--lapis);color:#fff;
+  cursor:pointer;background:var(--lapis);color:var(--on-hue);
   border:3px solid var(--line);box-shadow:var(--shadow-sm);padding:.55rem .8rem;
 }
 html[data-theme="contrast"] .a11y-btn{background:#000}
@@ -268,7 +275,7 @@ html[data-theme="contrast"] .a11y-btn{background:#000}
   font:inherit;font-size:.78rem;font-weight:700;cursor:pointer;flex:1;
   padding:.35rem .2rem;background:var(--card);color:var(--ink);border:2px solid var(--line);
 }
-.a11y-row button[aria-pressed="true"]{background:var(--line);color:var(--paper)}
+.a11y-row button[aria-pressed="true"]{background:var(--line);color:#fff}
 html[data-theme="contrast"] .a11y-row button[aria-pressed="true"]{background:#000;color:#fff}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
